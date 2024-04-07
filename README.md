@@ -6,8 +6,6 @@
 - Rofi
 - Kitty
 
-Sıkıntı olmadan kullanabilirsiniz.
-
 # Bunları Nereye Atmalıyım?
 Bu indirdiğiniz klasörleri /home/kullaniciadiniz/.config klasörünün içine atınız.
 
