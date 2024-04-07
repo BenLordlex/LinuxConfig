@@ -1,0 +1,119 @@
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+
+    "layer": "top",
+
+    "position": "top",
+
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+
+    "spacing": 5, // Gaps between modules (4px)
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "memory",
+        "cpu"
+    ],
+    "modules-center": [
+        "clock#1",
+        "custom/media",
+        "clock#2"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "tray"
+    ],
+
+
+    // -------------------------------------------------------------------------
+    // Modules
+    // -------------------------------------------------------------------------
+
+    "clock#1": {
+        "format": " {:%H:%M}",
+        "tooltip": false,
+    },
+    "clock#2": {
+        "format": " {:%d/%m/%Y}",
+        "tooltip": false,
+    },
+    "clock#3": {
+        "format": " {:%H:%M:%S %p}",
+        "tooltip": false,
+        "on-click": "gsimplecal"
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "☰ {used:0.2f} / {total:0.0f} GB",
+        "on-click": "alacritty -e btop"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": ""
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+
+    "clock": {
+        "format": "  {:%H:%M   %e %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<b>{}</b>"
+    },
+
+    "clock#date": {
+        "format": "{:%H:%M  %e %b}", // Icon: calendar-alt
+        //"format": "{:%I:%M %p  %A %b %d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<b>{}</b>"
+    },
+
+    "cpu": {
+        "interval": 1,
+        //"format": " {}%", // Icon: microchip
+        "format": " {usage}%",
+        "max-length": 15,
+    },
+    "wlr/workspaces": {
+        "on-click": "activate",
+        "format": "{icon}"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 3, // %, can be a float
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+	"ignored-sinks": ["Easy Effects Sink"],
+	"max-volume": 200,
+        //"format-source": "{volume}% ",
+        //"format-source-muted": "",
+        "format-source": "󰋋",
+        "format-source-muted": "󰟎",
+        "on-click": "pavucontrol",
+		"on-click-middle": "pulseaudio-control --node-blacklist 'easyeffects_sink' next-node",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 5
+    }
+}
